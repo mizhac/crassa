@@ -15,13 +15,7 @@ const createRoutes = require(appSrc + '/routes').default
 
 const universalJS = appServer + '/universal.js'
 const hasUniversal = fs.existsSync(universalJS)
-
-let extractor = null
-
-if(process.env.NODE_ENV !== 'development') {
-  const statsFile = appBuild + '/loadable-stats.json'
-  extractor = new ChunkExtractor({ statsFile })
-}
+const statsFile = appBuild + '/loadable-stats.json'
 
 // A simple helper function to prepare the HTML markup
 const prepHTML = (data, { html, head, body, loadableState, preloadedState, isCustomState }) => {
@@ -83,6 +77,8 @@ export const universalLoader = async (req, res, next) => {
         <Root store={store}>{routes}</Root>
       </HelmetProvider>
     )
+
+    const extractor = new ChunkExtractor({ statsFile })
 
     // Get loadable components tree
     const app = extractor.collectChunks(jsx)
