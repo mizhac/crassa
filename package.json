@@ -61,7 +61,8 @@
     "react-scripts": "3.3.0",
     "redux-wait-for-action": "0.0.8",
     "regenerator-runtime": "0.13.3",
-    "rimraf": "3.0.0"
+    "rimraf": "3.0.0",
+    "winston": "3.2.1"
   },
   "scripts": {
     "publish": "git add . && git commit && npm publish",
